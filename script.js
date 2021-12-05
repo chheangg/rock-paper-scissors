@@ -1,23 +1,20 @@
-let choice = "rock";
-let computer = computerSelection();
-
-
-
 function computerPlay() {
     let rollDice = Math.floor(Math.random() * 3)
     return rollDice;
 }
 
 function playerSelection() {
+let choice = prompt("Enter a choice (rock, paper or scissors)");
 choice = choice.toLowerCase();
   if ( choice != null || choice != undefined ) {
     if ( choice == 'rock' || choice == 'paper' || choice == 'scissors') {
         return choice;
     } else {
-        alert("Incorrect choice")
+        return playerSelection();
     }
 } else {
-    alert("Enter again please!")
+    alert("Enter again please!");
+    return playerSelection();
 }
 }
 
@@ -61,11 +58,18 @@ function playRound (player, computer) {
         case (player == 'scissors' && computer == 'rock'):
             alert("You lost! scissors cannot beat rock");
             break;
-        
-        default:
-            alert("Incorrect input!")
-            break;
     }
 }
 
-playRound(choice,computer);
+function game() {
+    let x = 0;
+
+    while ( x < 5 ) {
+    let player = playerSelection();
+    let computer = computerSelection();   
+    playRound(player,computer);
+    x++ 
+    }
+}
+
+game();
