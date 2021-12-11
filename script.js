@@ -1,21 +1,13 @@
+const button = document.querySelectorAll('button');
+const result = document.querySelector('.result');
+
+button.forEach((button) => {
+    button.addEventListener('click', playRound);
+})
+
 function computerPlay() {
     let rollDice = Math.floor(Math.random() * 3)
     return rollDice;
-}
-
-function playerSelection() {
-let choice = prompt("Enter a choice (rock, paper or scissors)");
-choice = choice.toLowerCase();
-  if ( choice != null || choice != undefined ) {
-    if ( choice == 'rock' || choice == 'paper' || choice == 'scissors') {
-        return choice;
-    } else {
-        return playerSelection();
-    }
-} else {
-    alert("Enter again please!");
-    return playerSelection();
-}
 }
 
 function computerSelection() {
@@ -30,46 +22,35 @@ function computerSelection() {
 }
 
 function playRound (player, computer) {
+    player = player.target.textContent.toLowerCase();
+    computer = computerSelection();
     switch (true) {
         case (player == 'rock' && computer == 'scissors'):
-            alert("You won! rock beats scissors");
+            result.textContent = "You won! rock beats scissors";
             break;
         case (player == 'rock' && computer == 'paper'):
-            alert("You lost! paper beats rock");
+            result.textContent = "You lost! paper beats rock";
             break;
         case (player == 'rock' && computer == 'rock'):
-            alert("You tied! rock cannot beats rock");
+            result.textContent = "You tied! rock cannot beats rock";
             break;
         case (player == 'paper' && computer == 'scissors'):
-            alert("You lost! scissors beats paper");
+            result.textContent = "You lost! scissors beats paper";
             break;
         case (player == 'paper' && computer == 'rock'):
-            alert("You won! paper beats rock");
+            result.textContent = "You won! paper beats rock";
             break;
         case (player == 'paper' && computer == 'paper'):
-            alert("You tied! paper cannot beat paper");
+            result.textContent = "You tied! paper cannot beat paper";
             break;
         case (player == 'scissors' && computer == 'scissors'):
-            alert("You tied! scissors cannot beat scissors");
+            result.textContent = "You tied! scissors cannot beat scissors";
             break;
         case (player == 'scissors' && computer == 'paper'):
-            alert("You won! scissors beats paper");
+            result.textContent = "You won! scissors beats paper";
             break;
         case (player == 'scissors' && computer == 'rock'):
-            alert("You lost! scissors cannot beat rock");
+            result.textContent = "You lost! scissors cannot beat rock";
             break;
     }
 }
-
-function game() {
-    let x = 0;
-
-    while ( x < 5 ) {
-    let player = playerSelection();
-    let computer = computerSelection();   
-    playRound(player,computer);
-    x++ 
-    }
-}
-
-game();
